@@ -1,0 +1,9 @@
+#文件名后缀
+*.bin
+*.elf
+
+#目录
+/build
+/deploy
+/FIP_artifacts/arm-trusted-firmware/debug
+tf-a-stm32mp-v2.6-stm32mp-r2/tools/fwu_gen_metadata/src/__pycache__
