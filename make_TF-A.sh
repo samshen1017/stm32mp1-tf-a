@@ -15,7 +15,7 @@ if [ $1 == "all" ]; then
     #编译所有目标板
     make -f $PWD/../Makefile.sdk DEPLOYDIR=$FIP_DEPLOYDIR_ROOT/arm-trusted-firmware -j12 all
 
-elif [ $1 == "astor" ]; then
+elif [ $1 == "astro" ]; then
     #编译定制板
     make -f $PWD/../Makefile.sdk DEPLOYDIR=$FIP_DEPLOYDIR_ROOT/arm-trusted-firmware TF_A_DEVICETREE=stm32mp157c-astro -j12 all
 
