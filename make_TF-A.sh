@@ -9,15 +9,15 @@ cd $TF_A_DIR
 source $ENV_SET
 
 #设置FIP目录
-export FIP_DEPLOYDIR_ROOT=$PWD/../FIP_artifacts
+export FIP_DEPLOYDIR_ROOT=/home/isaac/mywork/github/FIP_artifacts-stm32mp1/FIP_artifacts
 
 if [ $1 == "all" ]; then
     #编译所有目标板
-    make -f $PWD/../Makefile.sdk DEPLOYDIR=$FIP_DEPLOYDIR_ROOT/arm-trusted-firmware -j12 all
+    make -f $PWD/../Makefile.sdk DEPLOYDIR=$FIP_DEPLOYDIR_ROOT/arm-trusted-firmware all
 
 elif [ $1 == "astro" ]; then
     #编译定制板
-    make -f $PWD/../Makefile.sdk DEPLOYDIR=$FIP_DEPLOYDIR_ROOT/arm-trusted-firmware TF_A_DEVICETREE=stm32mp157c-astro -j12 all
+    make -f $PWD/../Makefile.sdk DEPLOYDIR=$FIP_DEPLOYDIR_ROOT/arm-trusted-firmware TF_A_DEVICETREE=stm32mp157c-astro all
 
 elif [ $1 == "clean" ]; then
     make -f $PWD/../Makefile.sdk clean
