@@ -21,5 +21,6 @@ elif [ $1 == "astro" ]; then
 
 elif [ $1 == "clean" ]; then
     make -f $PWD/../Makefile.sdk clean
+    rm -rf $PWD/../build
 fi
 
