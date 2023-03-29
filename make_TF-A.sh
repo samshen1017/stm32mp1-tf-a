@@ -8,19 +8,16 @@ cd $TF_A_DIR
 #设置编译器
 source $ENV_SET
 
-#设置FIP目录
-export FIP_DEPLOYDIR_ROOT=/home/isaac/mywork/github/FIP_artifacts-stm32mp1/FIP_artifacts
+if [ $1 == "debug" ]; then
+    unset -v CFLAGS LDFLAGS
+    make ARCH=aarch32 ARM_ARCH_MAJOR=7 DTB_FILE_NAME=stm32mp157c-astro.dtb STM32MP_SDMMC=1 STM32MP_EMMC=1 DEBUG=1
 
-if [ $1 == "all" ]; then
-    #编译所有目标板
-    make -f $PWD/../Makefile.sdk DEPLOYDIR=$FIP_DEPLOYDIR_ROOT/arm-trusted-firmware all
-
-elif [ $1 == "astro" ]; then
-    #编译定制板
-    make -f $PWD/../Makefile.sdk DEPLOYDIR=$FIP_DEPLOYDIR_ROOT/arm-trusted-firmware TF_A_DEVICETREE=stm32mp157c-astro all
+elif [ $1 == "bl32" ]; then
+    unset -v CFLAGS LDFLAGS
+    make PLAT=stm32mp1 ARCH=aarch32 ARM_ARCH_MAJOR=7 AARCH32_SP=sp_min DTB_FILE_NAME=stm32mp157c-astro.dtb DEBUG=1 bl32 dtbs
 
 elif [ $1 == "clean" ]; then
-    make -f $PWD/../Makefile.sdk clean
-    rm -rf $PWD/../build
+    make distclean
+    rm -rf build
 fi
 
