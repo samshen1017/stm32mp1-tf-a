@@ -8,11 +8,11 @@ cd $TF_A_DIR
 #设置编译器
 source $ENV_SET
 
-if [ $1 == "debug" ]; then
+if [ $1 == "astro" ]; then
+    echo make tf-a...
     unset -v CFLAGS LDFLAGS
     make CROSS_COMPILE=arm-ostl-linux-gnueabi- PLAT=stm32mp1 ARCH=aarch32 ARM_ARCH_MAJOR=7 DTB_FILE_NAME=stm32mp157c-astro.dtb STM32MP_SDMMC=1 STM32MP_EMMC=1 DEBUG=1
-
-elif [ $1 == "bl32" ]; then
+    echo make bl32...
     unset -v CFLAGS LDFLAGS
     make CROSS_COMPILE=arm-ostl-linux-gnueabi- PLAT=stm32mp1 ARCH=aarch32 ARM_ARCH_MAJOR=7 AARCH32_SP=sp_min DTB_FILE_NAME=stm32mp157c-astro.dtb DEBUG=1 bl32 dtbs
 
