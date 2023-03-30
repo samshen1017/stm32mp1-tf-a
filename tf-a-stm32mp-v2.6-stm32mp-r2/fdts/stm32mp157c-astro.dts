@@ -16,8 +16,12 @@
 	model = "STMicroelectronics STM32MP157C-ASTRO board";
 	compatible = "st,stm32mp157c-astro", "st,stm32mp157";
 
+	aliases {
+		serial0 = &uart8;
+	};
+
 	chosen {
-		stdout-path = "serial8:115200n8";
+		stdout-path = "serial0:115200n8";
 	};
 };
 
