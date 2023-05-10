@@ -5,7 +5,7 @@ ENV_SET=/home/isaac/toolchain/st/stm32mp1/4.0.4-openstlinux-5.15-yocto-kirkstone
 
 # 更换需要编译的目标板
 # TARGET_NAME=stm32mp157c-astro
-TARGET_NAME=stm32mp157d-openedv
+TARGET_NAME=stm32mp157d-atkmini
 
 cd $TF_A_DIR
 
@@ -16,6 +16,9 @@ if [ $1 == "debug" ]; then
     unset -v CFLAGS LDFLAGS
     make CROSS_COMPILE=arm-ostl-linux-gnueabi- PLAT=stm32mp1 ARCH=aarch32 ARM_ARCH_MAJOR=7 DTB_FILE_NAME=$TARGET_NAME.dtb STM32MP_SDMMC=1 STM32MP_EMMC=1 DEBUG=1
     
+    # 编译出的文件与之前的MMC版本镜像同名，所以先将之前的.stm32移走，清空后重新编译。
+    # make CROSS_COMPILE=arm-ostl-linux-gnueabi- PLAT=stm32mp1 ARCH=aarch32 ARM_ARCH_MAJOR=7 DTB_FILE_NAME=$TARGET_NAME.dtb STM32MP_USB_PROGRAMMER=1 DEBUG=1
+
 elif [ $1 == "bl32" ]; then
     unset -v CFLAGS LDFLAGS
     make CROSS_COMPILE=arm-ostl-linux-gnueabi- PLAT=stm32mp1 ARCH=aarch32 ARM_ARCH_MAJOR=7 AARCH32_SP=sp_min DTB_FILE_NAME=$TARGET_NAME.dtb DEBUG=1 bl32 dtbs
